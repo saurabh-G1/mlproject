@@ -1,6 +1,7 @@
 # for exception handling purpose  (common code) 
 import sys 
-import logging
+# import logging  
+from src.logger import logging 
 
 # this function does is  whenever an exception gets raised i want to push this on my own custom message
 # error means whatever message i am getting 
@@ -37,8 +38,9 @@ class CustomException(Exception):
 #     try:
 #         a=1/0
 #     except Exception as e:
-#         # logging.info("Divide by Zero") 
-#         raise CustomException(e,sys) 
+#         logging.info("Divide by Zero") 
+#         raise CustomException(e,sys)  
+    
     
      
      
