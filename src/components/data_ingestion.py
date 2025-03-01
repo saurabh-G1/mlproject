@@ -10,12 +10,16 @@ from src.exception import CustomException
 from sklearn.model_selection  import train_test_split 
 from dataclasses import dataclass  #used for create classvariables i.e. very cool way of using things  
 
+from src.components.data_transformation import DataTransformation  
+from src.components.data_transformation import DataTransformationConfig 
+
+
 # Whenever we perform data ingestion component their should be some i/p's that may be required by this data ingestion components.  
 #the i/p can be like where i have to save the training part, where i have to save the test part, where i've to save the raw data, 
 #  those type of i/p i will be creatingt in another class which is  
 
 @dataclass #used to define the class variable directly inside the class w/o init method otherwise omit it also.
-class DataIngestionConfig:
+class DataIngestionConfig: #this is for providing all the i/p things required for this data ingestion components.
       train_data_path: str=os.path.join('artifacts',"train.csv")  #this line is i/p and later on dataingestion component will save train.csv file in this particular path
       test_data_path: str=os.path.join('artifacts',"test.csv")  
       raw_data_path: str=os.path.join('artifacts',"data.csv") 
@@ -55,9 +59,14 @@ class DataIngestion:
         
 if __name__=="__main__":
     obj=DataIngestion()
-    obj.initiate_data_ingestion() 
+    train_data,test_data=obj.initiate_data_ingestion()  
+    
+    data_transformation=DataTransformation()  
+    data_transformation.initiate_data_transformation(train_data,test_data)   
+    
+    
         
-        
+                
     
     
         
